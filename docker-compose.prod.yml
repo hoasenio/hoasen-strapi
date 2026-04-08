@@ -1,0 +1,33 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      CMS_HOST: ${CMS_HOST}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    depends_on:
+      - strapi
+
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hoasen-cms:prod
+    container_name: strapi
+    restart: unless-stopped
+    env_file: .env
+    expose:
+      - "1337"
+    volumes:
+      - strapi_uploads:/opt/app/public/uploads
+
+volumes:
+  strapi_uploads:
+  caddy_data:
