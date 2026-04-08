@@ -8,19 +8,24 @@
   },
   "options": {},
   "attributes": {
-    "metaTitle": {
+    "meta_title": {
       "type": "string",
       "required": true
     },
-    "metaDescription": {
+    "meta_description": {
       "type": "text",
       "required": true
     },
-    "shareImage": {
+    "share_image": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "keywords": {
+      "type": "string"
     }
   }
 }

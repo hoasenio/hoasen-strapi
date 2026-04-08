@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "industries",
+  "info": {
+    "singularName": "industry",
+    "pluralName": "industries",
+    "displayName": "Industry"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "text_color_code": {
+      "type": "string",
+      "minLength": 7,
+      "maxLength": 7
+    },
+    "bg_color_code": {
+      "type": "string",
+      "minLength": 7,
+      "maxLength": 7
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "industries"
+    }
+  }
+}

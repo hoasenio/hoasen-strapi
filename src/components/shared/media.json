@@ -1,15 +1,40 @@
 {
   "collectionName": "components_shared_media",
   "info": {
-    "displayName": "Media",
+    "displayName": "MediaAsset",
     "icon": "file-video"
   },
   "options": {},
   "attributes": {
     "file": {
-      "allowedTypes": ["images", "files", "videos"],
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "hero",
+        "featured_card",
+        "gallery_item"
+      ]
+    },
+    "productPlatform": {
+      "type": "enumeration",
+      "enum": [
+        "mobile",
+        "web",
+        "tablet"
+      ]
+    },
+    "caption": {
+      "type": "string"
     }
   }
 }
