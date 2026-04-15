@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_brief_backgrounds",
+  "info": {
+    "displayName": "BriefBackground",
+    "icon": "write"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "background_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

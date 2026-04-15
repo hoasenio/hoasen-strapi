@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "skills",
+  "collectionName": "tech_infra_items",
   "info": {
-    "singularName": "skill",
-    "pluralName": "skills",
-    "displayName": "Skill"
+    "singularName": "tech-infra-item",
+    "pluralName": "tech-infra-items",
+    "displayName": "TechInfraItem"
   },
   "options": {
     "draftAndPublish": true
@@ -16,16 +16,15 @@
       "required": true,
       "unique": true
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name",
-      "required": true
+    "order": {
+      "type": "integer",
+      "unique": true
     },
     "projects": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "mappedBy": "skills"
+      "mappedBy": "tech_infra_items"
     }
   }
 }

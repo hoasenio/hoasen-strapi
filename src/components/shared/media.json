@@ -1,8 +1,8 @@
 {
   "collectionName": "components_shared_media",
   "info": {
-    "displayName": "MediaAsset",
-    "icon": "file-video"
+    "displayName": "GalleryImage",
+    "icon": "picture"
   },
   "options": {},
   "attributes": {
@@ -16,15 +16,6 @@
         "videos"
       ]
     },
-    "type": {
-      "type": "enumeration",
-      "required": true,
-      "enum": [
-        "hero",
-        "featured_card",
-        "gallery_item"
-      ]
-    },
     "productPlatform": {
       "type": "enumeration",
       "enum": [
@@ -33,8 +24,13 @@
         "tablet"
       ]
     },
-    "caption": {
+    "alt_text": {
       "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "required": false,
+      "unique": false
     }
   }
 }

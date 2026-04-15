@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_shared_solutions",
+  "info": {
+    "displayName": "Solution",
+    "icon": "lightbulb"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "image_alt": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_outcomes",
+  "info": {
+    "displayName": "Outcome",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "background_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

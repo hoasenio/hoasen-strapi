@@ -15,21 +15,21 @@
       "type": "string",
       "required": true
     },
-    "short_description": {
-      "type": "text",
-      "required": true
-    },
     "slug": {
       "type": "uid",
       "targetField": "title",
       "required": true
     },
+    "domain_subtitle": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text",
+      "required": true
+    },
     "is_featured": {
       "type": "boolean",
       "default": true
-    },
-    "overview": {
-      "type": "richtext"
     },
     "logo_icon": {
       "type": "media",
@@ -39,8 +39,27 @@
         "images"
       ]
     },
-    "domain_subtitle": {
-      "type": "string"
+    "hero_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "thumbnail_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "brief_and_background": {
+      "type": "component",
+      "component": "shared.brief-background",
+      "repeatable": false
     },
     "team_members": {
       "type": "relation",
@@ -48,7 +67,7 @@
       "target": "api::team-member.team-member",
       "inversedBy": "projects"
     },
-    "media_stack": {
+    "gallery_images": {
       "type": "component",
       "component": "shared.media",
       "repeatable": true
@@ -70,6 +89,37 @@
     },
     "llm_txt": {
       "type": "text"
+    },
+    "stats": {
+      "type": "component",
+      "component": "shared.stat",
+      "repeatable": true
+    },
+    "business_objectives": {
+      "type": "component",
+      "component": "shared.business-objective",
+      "repeatable": true
+    },
+    "solutions": {
+      "type": "component",
+      "component": "shared.solution",
+      "repeatable": true
+    },
+    "outcome": {
+      "type": "component",
+      "component": "shared.outcome",
+      "repeatable": false
+    },
+    "testimonial": {
+      "type": "component",
+      "component": "shared.testimonial",
+      "repeatable": false
+    },
+    "tech_infra_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tech-infra-item.tech-infra-item",
+      "inversedBy": "projects"
     }
   }
 }

@@ -545,10 +545,21 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    brief_and_background: Schema.Attribute.Component<
+      'shared.brief-background',
+      false
+    >;
+    business_objectives: Schema.Attribute.Component<
+      'shared.business-objective',
+      true
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     domain_subtitle: Schema.Attribute.String;
+    gallery_images: Schema.Attribute.Component<'shared.media', true>;
+    hero_image: Schema.Attribute.Media<'images' | 'videos'> &
+      Schema.Attribute.Required;
     industries: Schema.Attribute.Relation<
       'manyToMany',
       'api::industry.industry'
@@ -562,17 +573,25 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     logo_icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    media_stack: Schema.Attribute.Component<'shared.media', true>;
-    overview: Schema.Attribute.RichText;
+    outcome: Schema.Attribute.Component<'shared.outcome', false>;
     publishedAt: Schema.Attribute.DateTime;
     robots_txt: Schema.Attribute.Text;
     short_description: Schema.Attribute.Text & Schema.Attribute.Required;
     skills: Schema.Attribute.Relation<'manyToMany', 'api::skill.skill'>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    solutions: Schema.Attribute.Component<'shared.solution', true>;
+    stats: Schema.Attribute.Component<'shared.stat', true>;
     team_members: Schema.Attribute.Relation<
       'manyToMany',
       'api::team-member.team-member'
     >;
+    tech_infra_items: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::tech-infra-item.tech-infra-item'
+    >;
+    testimonial: Schema.Attribute.Component<'shared.testimonial', false>;
+    thumbnail_image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -591,11 +610,6 @@ export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    bg_color_code: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 7;
-        minLength: 7;
-      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -608,11 +622,6 @@ export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
     projects: Schema.Attribute.Relation<'manyToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
-    text_color_code: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 7;
-        minLength: 7;
-      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -648,6 +657,39 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
     projects: Schema.Attribute.Relation<'manyToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTechInfraItemTechInfraItem
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'tech_infra_items';
+  info: {
+    displayName: 'TechInfraItem';
+    pluralName: 'tech-infra-items';
+    singularName: 'tech-infra-item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tech-infra-item.tech-infra-item'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    order: Schema.Attribute.Integer & Schema.Attribute.Unique;
+    projects: Schema.Attribute.Relation<'manyToMany', 'api::project.project'>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1170,6 +1212,7 @@ declare module '@strapi/strapi' {
       'api::project.project': ApiProjectProject;
       'api::skill.skill': ApiSkillSkill;
       'api::team-member.team-member': ApiTeamMemberTeamMember;
+      'api::tech-infra-item.tech-infra-item': ApiTechInfraItemTechInfraItem;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
